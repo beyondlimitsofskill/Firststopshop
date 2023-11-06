@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Management System</title>
+</head>
+<body>
+    <h1>Game Management System</h1>
+
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name">
+    </div>
+
+    <div>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre">
+    </div>
+
+    <div>
+        <label for="releaseYear">Release Year:</label>
+        <input type="number" id="releaseYear">
+    </div>
+
+    <button onclick="addGame()">Add Game</button>
+
+    <h2>Games</h2>
+    <ul id="gameList"></ul>
+
+    <script>
+        var games = [];
+
+        function addGame() {
+            var name = document.getElementById("name").value;
+            var genre = document.getElementById("genre").value;
+            var releaseYear = document.getElementById("releaseYear").value;
+
+            var game = {
+                name: name,
+                genre: genre,
+                releaseYear: releaseYear
+            };
+
+            games.push(game);
+            displayGames();
+            clearForm();
+        }
+
+        function displayGames() {
+            var gameList = document.getElementById("gameList");
+            gameList.innerHTML = "";
+
+            games.forEach(function(game) {
+                var listItem = document.createElement("li");
+                listItem.textContent = game.name + " (" + game.genre + "), Released in " + game.releaseYear;
+                gameList.appendChild(listItem);
+            });
+        }
+
+        function clearForm() {
+            document.getElementById("name").value = "";
+            document.getElementById("genre").value = "";
+            document.getElementById("releaseYear").value = "";
+        }
+    </script>
+</body>
+</html>
+
